@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/dashboardLayout.html}">
+
+<head>
+
+</head>
+
+<body>
+
+
+    <section class="row" layout:fragment="content">
+        <div class="col">
+            <form th:action="@{/admin/categories/saveOrUpdate}" method="post" th:object="${category}">
+                <div class="card ">
+
+                    <div class="card-body">
+                        <h5 th:if="${category.isEdit}" class="card-title text-center">Cập nhật thể loại</h5>
+                        <h5 th:unless="${category.isEdit}" class="card-title text-center">Thêm thể loại</h5>
+                        <div class="form-group">
+                            <label for="categoryId">Mã thể loại</label>
+                            <input type="hidden" name="" th:field="*{isEdit}">
+                            <input class="form-control" type="text" aria-describedby="categoryHId" th:field="*{categoryId}" readonly>
+                            <small id="categoryHId" class="form-text text-muted">Mã thể loại không được bỏ trống</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Tên thể loại</label>
+                            <input class="form-control" th:field="*{name}" id="name" type="text" aria-describedby="nameHId">
+                            <small th:if="${#fields.hasErrors('name')}" id="nameHId" class="form-text text-muted">Tên thể loại không được để trống</small>
+                        </div>
+
+                    </div>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-primary"> <i class="fa fa-save mr-1"></i>
+                                    <span th:if="${category.isEdit}">Cập Nhật</span>
+                                    <span th:unless="${category.isEdit}">Lưu</span></button>
+
+                        <a th:href="@{/admin/categories/}" class="btn btn-success" href="">DanhSach</a>
+                        <button type="reset" class="btn btn-secondary">Làm mới</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- Popper.js first, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

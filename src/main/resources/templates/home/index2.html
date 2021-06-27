@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+	ustora by freshdesignweb.com
+	Twitter: https://twitter.com/freshdesignweb
+	URL: https://www.freshdesignweb.com/ustora/
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Index</title>
+
+<!-- Google Fonts -->
+<link
+	th:href='@{http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600}'
+	rel='stylesheet' type='text/css'>
+<link
+	th:href='@{http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300}'
+	rel='stylesheet' type='text/css'>
+<link
+	th:href='@{http://fonts.googleapis.com/css?family=Raleway:400,100}'
+	rel='stylesheet' type='text/css'>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" th:href="@{/home/css/bootstrap.min.css}">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" th:href="@{/home/css/font-awesome.min.css}">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" th:href="@{/home/css/owl.carousel.css}">
+<link rel="stylesheet" th:href="@{/home/style.css}">
+<link rel="stylesheet" th:href="@{/home/css/responsive.css}">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<style>
+</style>
+
+
+</head>
+<body>
+
+	<form th:action="@{'/Finaltest'}" th:method="POST" th:object="${cates}">
+		Mã Danh Mục : <input type="text" th:field="*{id}"
+			th:value="${cates.id}"> Tên Danh Mục : <input type="text"
+			th:field="*{name}" th:value="${cates.name}"> 
+			<button type="submit" >update</button>
+		
+			<button type="submit">create</button>
+			<button type="submit" th:formaction="@{'/delete/'+${cates.id}}">delete</button>
+			<button type="reset">clear</button>
+		</a>
+	</form>
+	<div></div>
+	<table style="width: 100%" border="1">
+		<tr>
+			<th>Mã</th>
+			<th>Tên</th>
+			<th></th>
+		</tr>
+		<tr th:each=" t : ${list}">
+			<td th:text="${t.id}"></td>
+			<td th:text="${t.name}"></td>
+			<td><a th:href="@{'/Thi/Edit/'+${t.id}}">edit</a></td>
+		</tr>
+
+	</table>
+</body>
+</html>
